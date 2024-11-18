@@ -10,8 +10,8 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     # Constrains Section
-    def _check_consignor_changes(self):
-        res = super()._check_consignor_changes()
+    def _check_consignor_changes(self, vals):
+        res = super()._check_consignor_changes(vals)
         PosSession = self.env["pos.session"]
         if PosSession.search([("state", "!=", "closed")]):
             raise ValidationError(

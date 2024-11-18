@@ -18,6 +18,7 @@
     ],
     "data": ["views/view_account_move.xml"],
     "demo": [
+        "demo/account_journal.xml",
         "demo/pos_payment_method.xml",
         "demo/pos_config.xml",
         "demo/product_product.xml",

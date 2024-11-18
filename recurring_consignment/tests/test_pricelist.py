@@ -27,6 +27,11 @@ class TestPricelist(TransactionCase):
 
     # Private Section
     def _test_pricelist(self, product, alternative):
+        print("_test_pricelist")
+        print(f"product {product.name} ; currency: {product.currency_id.name}")
+        print(
+            f"product {self.sale_pricelist_50.name} ; currency: {self.sale_pricelist_50.currency_id.name}"
+        )
         if alternative:
             self.assertEqual(
                 self.sale_pricelist_50._get_product_price(product, 1),
@@ -41,16 +46,16 @@ class TestPricelist(TransactionCase):
                 " if no alternative pricelist is set.",
             )
 
-    def test_10_pricelist_existing_product_alternative(self):
-        """Test if alternative pricelist mechanism works fine for existing
-        products"""
-        self._test_pricelist(self.consigned_product_vat_5_A, True)
-
-    def test_11_pricelist_existing_product_normal(self):
+    def test_10_pricelist_existing_product_normal(self):
         """Test if normal pricelist mechanism works fine for existing
         products"""
         self.sale_pricelist_50.consignment_pricelist_id = False
         self._test_pricelist(self.consigned_product_vat_5_A, False)
+
+    def test_11_pricelist_existing_product_alternative(self):
+        """Test if alternative pricelist mechanism works fine for existing
+        products"""
+        self._test_pricelist(self.consigned_product_vat_5_A, True)
 
     def test_12_pricelist_create_product_alternative(self):
         """Test if alternative pricelist mechanism works fine for created products"""
